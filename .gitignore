@@ -1,0 +1,2 @@
+#ignore files used to test individual functionailities during development
+test*.js
