@@ -1,2 +1,5 @@
 #ignore files used to test individual functionailities during development
 test*.js
+node_modules
+.DS_Store
+.parcel-cache
