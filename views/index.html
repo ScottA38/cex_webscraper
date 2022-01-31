@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#44CC77">
+    <title>CEX Webscraper</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1>CEX Webscraper</h1>
+    <form data-bind="submit: titleSearch"></form>
+    <label for="title">Name:</p>
+    <input type="text" name="title" value="Enter a title" data-bind='value: title'>
+    <button type='submit'>Submit</button>
+    <span class='result-count' data-bind='text: "Results:" + boxes().length'></span>
+    <!-- ko if: boxes -->
+      <ul data-bind='foreach: boxes'>
+        <li class='box'>
+          <div class='container id'>
+            <span class="box id label">Box ID:</span>
+            <span class="box id value" data-bind="text: boxId"></span>
+          </div>
+          <div class='container name'>
+            <span class="box name label">Name:</span>
+            <span class="box name value" data-bind="text: boxName"></span>
+          </div>
+          <div class='container sell-price'>
+            <span class="box sell-price label">Sell Price:</span>
+            <span class="box sell-price value" data-bind="text: sellPrice"></span>
+          </div>
+          <div class='container cash-price'>
+            <span class="box cash-price label">Sell Price:</span>
+            <span class="box cash-price value" data-bind="text: sellPrice"></span>
+          </div>
+        </li>
+      </ul>
+    <!-- /ko -->
+    <script type='text/javascript' src='bundle.js'>
+    </script>
+  </body>
+</html>
