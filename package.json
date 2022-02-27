@@ -4,7 +4,9 @@
   "description": "A web_scraper to draw data from specific title searches on the cex website and return data primarily about the trade-in price of a DVD and secondarily about the stock levels of this specific DVD in stores local to a specific longitude and latitude",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"start-cli": "node index.js",
+		"start-gui": "node app.js"
   },
   "keywords": [
     "scraper",
