@@ -20,7 +20,8 @@ app.use(expressWinston.logger({
    winston.format.colorize(),
    winston.format.json()
   ),
-  expressFormat: true, // Use the default Express/morgan request formatting. Enabling this will override any msg if true. Will only output colors with colorize set to true
+  expressFormat: true, // Use the default Express/morgan request formatting.
+  // Enabling this will override any msg if true. Will only output colors with colorize set to true
   colorize: true,
   ignoreRoute: function (req, res) { return true; }
 }));
@@ -39,15 +40,6 @@ app.use(express.json());
 app.get("/", function (req, res) {
   res.render("index", {});
 });
-
-// if (postcode) {
-//   postcode = postcode.replace('/[\s\-]+/g', '');
-//   if (!functions.validatePostcode(postcode)) {
-//     res.status(400).send('Incorrect postcode format')
-//
-//     return false;
-//   }
-// }
 
 app.get("/findTitle", function(req, res) {
   let title = req.query.title;
