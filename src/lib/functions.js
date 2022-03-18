@@ -2,7 +2,6 @@ const https = require("https");
 const http = require("http");
 const PostcodesIO = require("postcodesio-client");
 const postcodes = new PostcodesIO();
-const url = require('url');
 
 /**
  * @param  {object|string}  param
@@ -88,11 +87,10 @@ function validatePostcode(value) {
   let o = value.substring(0, splitIndex);
   let i = value.substring(splitIndex);
 
-  return
-    value.length <= 7
+  return value.length <= 7
     && value.length >= 5
-    && !isNan(o[(o.length - 1)])
-    && !isNan(i[0]);
+    && !Number.isNan(o[(o.length - 1)])
+    && !Number.isNan(i[0]);
 }
 
 /**
@@ -102,7 +100,7 @@ function validatePostcode(value) {
  * @return {array}
  */
 function geocoder(postcode) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     postcodes.lookup(postcode).then(function(geocode) {
       resolve([geocode.latitude, geocode.longitude]);
     })
