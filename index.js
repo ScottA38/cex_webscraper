@@ -3,11 +3,10 @@ var readline = require("readline").createInterface( {
   output: process.stdout
 })
 
-let search_terms = undefined;
 const dataHelper = require('./src/lib/functions.js')
 
 function askForTerms() {
-  return new Promise( function (resolve, reject) {
+  return new Promise( function (resolve) {
     readline.question("Please enter the title of the dvd (or item) you would like to look for on CEX:\n>",function(terms) {
       resolve(terms);
     })
@@ -15,13 +14,13 @@ function askForTerms() {
 }
 
 function askForLocation() {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve) {
     readline.resume();
     var result = {};
     readline.question("If you would like to check stock of a specific location, please copy and paste a product's 'boxId' from\nthe above results\n", function(response) {
       result.boxId = response;
       readline.question("What is the postcode of the location which you would like to check for store stock around?", function(response) {
-        geocoder(response)
+        dataHelper.geocoder(response)
         .then(function(latlong) {
           result.location = latlong;
           resolve(result)
@@ -52,7 +51,8 @@ askForTerms()
       console.log(products[i].boxName + " is bought in cash for: £" + products[i].cashPrice);
       console.log("The CEX system says that " + products[i].boxName + ` is ${products[i].outOfStock?"out of":"in"} stock in stores`);
       console.log("The CEX system says that " + products[i].boxName + ` is ${products[i].outOfEcomStock?"out of":"in"} stock online\n\n`);
-    };
+    }
+
     askForLocation()
     .then(function(response) {
       console.log(response.boxId);
@@ -60,7 +60,7 @@ askForTerms()
       readline.close();
 
       //ask for location information about location
-      getData(response, false)
+      dataHelper.getData(response, false)
       .then(function(result) {
         console.log(JSON.parse(result));
       })

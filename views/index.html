@@ -9,15 +9,22 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <h1>CEX Webscraper</h1>
-    <form data-bind="submit: titleSearch"></form>
-    <label for="title">Name:</p>
-    <input type="text" name="title" value="Enter a title" data-bind='value: title'>
-    <button type='submit'>Submit</button>
-    <span class='result-count' data-bind='text: "Results:" + boxes().length'></span>
+    <header id="search" class="search">
+      <h1 class="page-title">CEX Webscraper</h1>
+      <form data-bind="submit: titleSearch"></form>
+      <input type="text" name="title" value="Enter a title" data-bind='value: title'>
+      <button type='submit'>Submit</button>
+      <span
+        class='result-count'
+        data-bind='html: getResultCount'>
+      </span>
+    </header>
     <!-- ko if: boxes -->
       <ul data-bind='foreach: boxes'>
         <li class='box'>
+          <div class='container thumbnail'>
+            <img class="box thumbnail value" data-bind="attr:{src: imageUrls.small}"></span>
+          </div>
           <div class='container id'>
             <span class="box id label">Box ID:</span>
             <span class="box id value" data-bind="text: boxId"></span>
@@ -31,8 +38,8 @@
             <span class="box sell-price value" data-bind="text: sellPrice"></span>
           </div>
           <div class='container cash-price'>
-            <span class="box cash-price label">Sell Price:</span>
-            <span class="box cash-price value" data-bind="text: sellPrice"></span>
+            <span class="box cash-price label">Cash Price:</span>
+            <span class="box cash-price value" data-bind="text: cashPrice"></span>
           </div>
         </li>
       </ul>

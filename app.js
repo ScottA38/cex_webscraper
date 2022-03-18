@@ -4,7 +4,6 @@ const express = require("express");
 const winston = require('winston');
 const expressWinston = require('express-winston');
 
-
 const app = express();
 const port = process.env.PORT || "8000";
 
@@ -21,7 +20,8 @@ app.use(expressWinston.logger({
    winston.format.json()
   ),
   expressFormat: true, // Use the default Express/morgan request formatting.
-  // Enabling this will override any msg if true. Will only output colors with colorize set to true
+  // Enabling this will override any msg if true.
+  // Will only output colors with colorize set to true
   colorize: true,
   ignoreRoute: function (req, res) { return true; }
 }));
@@ -52,14 +52,10 @@ app.get("/findTitle", function(req, res) {
 
   functions.getData(title, true)
   .then(function(resp) {
-    res.json(JSON.parse(resp) ?? {});
-
-    return true;
+    return res.json((JSON.parse(resp) ?? {}));
   })
   .catch(function (err) {
-    res.status(500).send(err.message);
-
-    return false;
+    return res.status(500).send(err.message);
   });
 })
 
