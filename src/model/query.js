@@ -19,7 +19,7 @@ function ScraperQuery () {
 
   self.titleSearch = computed(function() {
     if (self.title()) {
-      let url = new URL('/findTitle', location);
+      let url = new URL('findTitle', location);
       url.searchParams.set('title', self.title());
       functions.fetch(url, true)
       .then(function(result) {
